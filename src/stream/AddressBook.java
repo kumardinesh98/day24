@@ -18,7 +18,7 @@ public class AddressBook {
 		addressBook = new LinkedList<Contact>();
 		boolean isExit = false;
 
-		System.out.println("Welcome to the Address book, Manage your contacts " + "with the Address book");
+		System.out.println("Welcome to the Address book, Manage your contacts with the Address book");
 		while (!isExit) {
 			System.out.println("Select the option from below");
 			if (addressBook.isEmpty()) {
