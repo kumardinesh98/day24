@@ -154,6 +154,7 @@ public class AddressBook {
 
 		for (int i = 0; i < addressBook.size(); i++) {
 			if (firstName.equals(addressBook.get(i).getFirstName())) {
+				System.out.println("name is alredy present please try again");
 				exist = true;
 			}
 		}
