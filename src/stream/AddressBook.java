@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import collections.Contact;
+
 public class AddressBook {
 
 	static Scanner scanner = new Scanner(System.in);
@@ -42,7 +44,7 @@ public class AddressBook {
 				break;
 
 			case "4":
-				// deleteContact(scanner);
+				deleteContact(scanner);
 				break;
 
 			case "5":
@@ -64,6 +66,23 @@ public class AddressBook {
 		scanner.close();
 	}
 	
+	private static void deleteContact(Scanner scanner) {
+		System.out.println("Which contact you want to Delete? (Enter the First name)");
+		String firstName = scanner.nextLine();
+
+		Contact deleteContact = null;
+		for (int i = 0; i < addressBook.size(); i++) {
+			if (firstName.equals(addressBook.get(i).getFirstName())) {
+				deleteContact = addressBook.remove(i);
+			}
+		}
+
+		if (deleteContact == null) {
+			System.out.println("No contact found with name " + firstName + ".");
+		} else {
+			System.out.println(deleteContact.getFirstName() + "'s contact has been removed from your Address Book.");
+		}
+	}
 
 	private static void editContact(Scanner scanner) {
 		System.out.println("Which contact you want to Edit? (Enter the First name)");
