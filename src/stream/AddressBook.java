@@ -7,8 +7,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import collections.Contact;
-
 public class AddressBook {
 
 	static Scanner scanner = new Scanner(System.in);
