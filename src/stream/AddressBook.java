@@ -13,7 +13,6 @@ public class AddressBook {
 	Contact contact = new Contact();
 	static List<Contact> addressBook;
 
-
 	public static void main(String[] args) {
 		addressBook = new LinkedList<Contact>();
 		boolean isExit = false;
@@ -39,18 +38,19 @@ public class AddressBook {
 				break;
 
 			case "3":
+				editContact(scanner);
 				break;
 
 			case "4":
-				//deleteContact(scanner);
+				// deleteContact(scanner);
 				break;
 
 			case "5":
-				//displayByCity();
+				// displayByCity();
 				break;
 
 			case "6":
-				//displayByState();
+				// displayByState();
 				break;
 			case "7":
 				isExit = true;
@@ -63,15 +63,58 @@ public class AddressBook {
 		}
 		scanner.close();
 	}
-
 	
 
-	
+	private static void editContact(Scanner scanner) {
+		System.out.println("Which contact you want to Edit? (Enter the First name)");
+		String firstName = scanner.nextLine();
 
-	
-	
+		Contact editContact = null;
+		for (int i = 0; i < addressBook.size(); i++) {
+			if (firstName.equals(addressBook.get(i).getFirstName())) {
+				editContact = addressBook.get(i);
+			}
+		}
 
-	
+		if (editContact == null) {
+			System.out.println("No contact found with name " + firstName + ".");
+		} else {
+			editContactDetails(editContact, scanner);
+		}
+	}
+
+	private static void editContactDetails(Contact editContact, Scanner scanner) {
+		System.out.println("Enter First Name: ");
+		String firstName = scanner.nextLine();
+		editContact.setFirstName(validateName(firstName, scanner));
+
+		System.out.println("Enter second Name: ");
+		String secondName = scanner.nextLine();
+		editContact.setSecondName(validateName(secondName, scanner));
+
+		System.out.println("Enter Your Email: ");
+		String email = scanner.nextLine();
+		editContact.seteMail(validateEmail(email, scanner));
+
+		System.out.println("Enter Phone Number: ");
+		String phoneNumber = scanner.nextLine();
+		editContact.setPhoneNumber(validatePhone(phoneNumber, scanner));
+		
+		System.out.println("Enter city: ");
+		String city = scanner.nextLine();
+		editContact.setCity(city);
+
+		System.out.println("Enter state: ");
+		String state = scanner.nextLine();
+		editContact.setState(state);
+		
+		System.out.println("Enter zip code: ");
+		String zip = scanner.nextLine();
+		editContact.setZip(zip);
+
+		System.out.println("Contact has been edited.");
+	}
+
 
 	private static void showContacts() {
 		if (addressBook.isEmpty()) {
