@@ -73,4 +73,13 @@ public class Contact {
 	public void seteMail(String eMail) {
 		this.eMail = eMail;
 	}
+
+	@Override
+	public String toString() {
+		return "Contact [firstName=" + firstName + ", secondName=" + secondName + ", address=" + address + ", city="
+				+ city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", eMail=" + eMail
+				+ "]";
+	}
+	
+	
 }

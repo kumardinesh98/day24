@@ -46,11 +46,11 @@ public class AddressBook {
 				break;
 
 			case "5":
-				// displayByCity();
+				displayByCity();
 				break;
 
 			case "6":
-				// displayByState();
+				displayByState();
 				break;
 			case "7":
 				isExit = true;
@@ -64,22 +64,28 @@ public class AddressBook {
 		scanner.close();
 	}
 	
+	private static void displayByCity() {
+		System.out.println("enter city name to find");
+		String findCity = scanner.nextLine();
+		
+		addressBook.stream().filter(address -> address.city .equals(findCity)).forEach(System.out::println);
+	}
+	
+	private static void displayByState() {
+		System.out.println("enter state name to find");
+		String findState = scanner.nextLine();
+		
+		addressBook.stream().filter(address -> address.state .equals(findState)).forEach(System.out::println);
+		}
+
+
+	
 	private static void deleteContact(Scanner scanner) {
 		System.out.println("Which contact you want to Delete? (Enter the First name)");
 		String firstName = scanner.nextLine();
 
-		Contact deleteContact = null;
-		for (int i = 0; i < addressBook.size(); i++) {
-			if (firstName.equals(addressBook.get(i).getFirstName())) {
-				deleteContact = addressBook.remove(i);
-			}
-		}
-
-		if (deleteContact == null) {
-			System.out.println("No contact found with name " + firstName + ".");
-		} else {
-			System.out.println(deleteContact.getFirstName() + "'s contact has been removed from your Address Book.");
-		}
+		Contact deletContact = addressBook.stream().filter(address -> address.firstName .equals(firstName)).findFirst().get();
+		addressBook.remove(deletContact);
 	}
 
 	private static void editContact(Scanner scanner) {
@@ -145,20 +151,14 @@ public class AddressBook {
 
 	private static void addContact(Scanner scanner) {
 
-		boolean exist = false;
 		Contact contact = new Contact();
 
 		System.out.println("Enter First Name: ");
 		String firstName = scanner.nextLine();
 		contact.setFirstName(validateName(firstName, scanner));
 
-		for (int i = 0; i < addressBook.size(); i++) {
-			if (firstName.equals(addressBook.get(i).getFirstName())) {
-				System.out.println("name is alredy present please try again");
-				exist = true;
-			}
-		}
-
+		boolean exist = addressBook.stream().filter(address -> address.firstName .equals(firstName)) == null;
+		
 		if (!exist) {
 			System.out.println("Enter second Name: ");
 			String secondName = scanner.nextLine();
@@ -231,5 +231,5 @@ public class AddressBook {
 		}
 		return phone;
 	}
-
+		
 }
