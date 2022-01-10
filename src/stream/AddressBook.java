@@ -26,7 +26,8 @@ public class AddressBook {
 				System.out.println("1. Add Contact" + "\n5. Exit");
 			} else {
 				System.out.println("1. Add Contact" + "\n2. Display Contact\n3. Edit Contact" + "\n4. Delete Contact"
-						+ "\n5 seach by city name \n6. search by state name \n7. sort by name \n8. exit");
+						+ "\n5 seach by city name \n6. search by state name \n7. sort by name "
+						+ "\n8. sort by city \n9. sort by state \n10. sort by zip code \n11. exit");
 			}
 			String option = scanner.nextLine();
 
@@ -56,7 +57,17 @@ public class AddressBook {
 				break;
 			case "7":
 				sortByName();
+				break;
 			case "8":
+				sortByCity();
+				break;
+			case "9":
+				sortByState();
+				break;
+			case "10":
+				sortByZipcode();
+				break;
+			case "11":
 				isExit = true;
 				break;
 
@@ -68,6 +79,21 @@ public class AddressBook {
 		scanner.close();
 	}
 	
+	public static void sortByZipcode() {
+		addressBook.stream().sorted(Comparator.comparing(Contact::getZip)).forEach(System.out::println);
+		
+	}
+
+	public static void sortByState() {
+		addressBook.stream().sorted(Comparator.comparing(Contact::getState)).forEach(System.out::println);
+	
+	}
+
+	public static void sortByCity() {
+		addressBook.stream().sorted(Comparator.comparing(Contact::getCity)).forEach(System.out::println);
+		
+	}
+
 	public static void sortByName() {
 		addressBook.stream().sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
 	}
