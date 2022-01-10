@@ -1,9 +1,11 @@
 package stream;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.SortedMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +26,7 @@ public class AddressBook {
 				System.out.println("1. Add Contact" + "\n5. Exit");
 			} else {
 				System.out.println("1. Add Contact" + "\n2. Display Contact\n3. Edit Contact" + "\n4. Delete Contact"
-						+ "\n5 seach by city name \n6. search by state name \n7. exit");
+						+ "\n5 seach by city name \n6. search by state name \n7. sort by name \n8. exit");
 			}
 			String option = scanner.nextLine();
 
@@ -53,6 +55,8 @@ public class AddressBook {
 				displayByState();
 				break;
 			case "7":
+				sortByName();
+			case "8":
 				isExit = true;
 				break;
 
@@ -64,6 +68,10 @@ public class AddressBook {
 		scanner.close();
 	}
 	
+	public static void sortByName() {
+		addressBook.stream().sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
+	}
+
 	private static void displayByCity() {
 		System.out.println("enter city name to find");
 		String findCity = scanner.nextLine();
