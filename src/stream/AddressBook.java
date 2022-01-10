@@ -67,14 +67,18 @@ public class AddressBook {
 	private static void displayByCity() {
 		System.out.println("enter city name to find");
 		String findCity = scanner.nextLine();
+		int count = (int) addressBook.stream().filter(address -> address.city .equals(findCity)).count(); 
 		addressBook.stream().filter(address -> address.city .equals(findCity)).forEach(System.out::println);
+		System.out.println("total count is  " + count);
 	}
 	
 	private static void displayByState() {
 		System.out.println("enter state name to find");
 		String findState = scanner.nextLine();
+		int count = (int) addressBook.stream().filter(address -> address.state .equals(findState)).count();
 		addressBook.stream().filter(address -> address.state .equals(findState)).forEach(System.out::println);
-		}
+		System.out.println("total count is " + count);
+	}
 
 
 	
